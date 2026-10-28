@@ -1,5 +1,16 @@
 import express from 'express';
 import usersRouter from './routes/users.js';
+import { connectDB } from './config/db.js';
+
+// Load .env file if available (native in Node.js)
+try {
+  process.loadEnvFile();
+} catch (e) {
+  // Variables already provided by host environment (e.g. Render)
+}
+
+// Connect to MongoDB
+connectDB();
 
 const app = express();
 const PORT = process.env.PORT || 3000;
